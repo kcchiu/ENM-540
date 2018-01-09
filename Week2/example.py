@@ -9,6 +9,8 @@ Created on Sun Dec 31 15:00:19 2017
 import numpy as np
 import matplotlib.pyplot as plt
 from pyDOE import lhs
+from scipy.stats import norm
+
 from models import BayesianLinearRegression
 
 if __name__ == "__main__": 
@@ -36,18 +38,29 @@ if __name__ == "__main__":
     y_pred_MAP = np.matmul(X_star, w_MAP)
     
     # Draw sampes from the predictive posterior
-    num_samples = 500
+    num_samples = 1000
     mean_star, var_star = m.predictive_distribution(X_star)
     samples = np.random.multivariate_normal(mean_star.flatten(), var_star, num_samples)
     
     # Plot
-    plt.figure(1)
-    plt.plot(X_star, y_pred_MLE, linewidth=2.0, label = 'MLE')
-    plt.plot(X_star, y_pred_MAP, linewidth=2.0, label = 'MAP')
+    plt.figure(1, figsize=(8,6))
+    plt.subplot(1,2,1)
+    plt.plot(X_star, y_pred_MLE, linewidth=3.0, label = 'MLE')
+    plt.plot(X_star, y_pred_MAP, linewidth=3.0, label = 'MAP')
     for i in range(0, num_samples):
-        plt.plot(X_star, samples[i,:], 'k', linewidth=0.1)
+        plt.plot(X_star, samples[i,:], 'k', linewidth=0.05)
     plt.plot(X,y,'o', label = 'Data')
     plt.legend()
     plt.xlabel('$x$')
     plt.ylabel('$y$')
-    
+    plt.axis('tight')
+
+
+    # Plot distribution of w
+    plt.subplot(1,2,2)
+    x_axis = np.linspace(1, 5, 1000)[:,None]
+    plt.plot(x_axis, norm.pdf(x_axis,w_MAP,Lambda_inv), label = 'p(w|D)')
+    plt.legend()
+    plt.xlabel('$w$')
+    plt.ylabel('$p(w|D)$')
+    plt.axis('tight')
