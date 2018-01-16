@@ -44,5 +44,6 @@ if __name__ == "__main__":
     plt.figure(1)
     plt.plot(x.data.numpy(),y.data.numpy(),'o')
     plt.plot(x.data.numpy(), y_pred.data.numpy())
+    plt.show()
 
 
