@@ -1,3 +1,12 @@
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jan 11 16:19:55 2018
+
+@author: Paris
+"""
+
+
 import autograd.numpy as np
 from autograd import grad
 

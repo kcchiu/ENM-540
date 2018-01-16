@@ -16,7 +16,7 @@ from models import BayesianLinearRegression
 if __name__ == "__main__": 
     
     # N is the number of training points.
-    N = 5
+    N = 200
     noise_var = 0.5
     alpha = 1.0/noise_var
     beta = 1.0/noise_var
