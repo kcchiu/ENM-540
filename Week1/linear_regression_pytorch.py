@@ -13,20 +13,20 @@ if __name__ == "__main__":
     N, D_in, D_out = 64, 1, 1
     
     # Create random input and output data
-    x = lhs(D_in, N)
-    y = 5*x + np.random.randn(N,D_out)
+    X = lhs(D_in, N)
+    y = 5*X + np.random.randn(N,D_out)
     
     # Create random Tensors to hold inputs and outputs, and wrap them in Variables.
-    x = Variable(torch.from_numpy(x), requires_grad=False)
+    X = Variable(torch.from_numpy(X), requires_grad=False)
     y = Variable(torch.from_numpy(y), requires_grad=False)
     
     # Randomly initialize weights
-    W = Variable(torch.randn(D_in, D_out).double(), requires_grad=True)
+    w = Variable(torch.randn(D_in, D_out).double(), requires_grad=True)
     
-    learning_rate = 1e-6
-    for it in range(50000):
+    learning_rate = 1e-3
+    for it in range(1000):
       # Forward pass: compute predicted y
-      y_pred = torch.matmul(x,W)
+      y_pred = torch.matmul(X,w)
       
       # Compute and print loss
       loss = torch.sum((y_pred - y)**2)
@@ -36,14 +36,16 @@ if __name__ == "__main__":
       loss.backward()
       
       # Update weights
-      W.data = W.data - learning_rate * W.grad.data
+      w.data = w.data - learning_rate * w.grad.data
       
       # Reset gradient
-      W.grad.data.zero_()
+      w.grad.data.zero_()
       
+    y_pred = torch.matmul(X,w)
+    
     plt.figure(1)
-    plt.plot(x.data.numpy(),y.data.numpy(),'o')
-    plt.plot(x.data.numpy(), y_pred.data.numpy())
+    plt.plot(X.data.numpy(),y.data.numpy(),'o')
+    plt.plot(X.data.numpy(), y_pred.data.numpy())
     plt.show()
 
 
