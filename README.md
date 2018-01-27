@@ -36,8 +36,7 @@ Students will leave this course with experience in:
 
 TAs work one-on-one with students to guide them on projects and help problem-solve. Students are advised to consult a TA if they have tried something themselves and it hasn’t worked to their satisfaction.
 
-**Name, TBA, Office Hours: TBA. Email: TBA
-
+TA: Chenchen Hu,  Office Hours: Thursdays, 1:30-3:30pm, room 401B (3401 Walnut Street, 4th floor), Email: <hu10@seas.upenn.edu>
 
 
 ### Note
