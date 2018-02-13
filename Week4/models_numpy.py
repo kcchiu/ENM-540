@@ -223,3 +223,5 @@ class LinearRegression:
         # De-normalize outputs
         y_star = y_star*self.Ystd + self.Ymean 
         return y_star
+    
+

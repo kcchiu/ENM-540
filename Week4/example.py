@@ -10,8 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pyDOE import lhs
 
-from models_numpy import NeuralNetwork
-#from models_pytorch import NeuralNetwork
+#from models_numpy import NeuralNetwork
+from models_pytorch import NeuralNetwork
 #from models_tf import NeuralNetwork
 
 
@@ -20,7 +20,7 @@ if __name__ == "__main__":
     N = 1000
     X_dim = 1
     Y_dim = 1
-    layers = np.array([X_dim,100,100,Y_dim])
+    layers = [X_dim,100,100,Y_dim]
     noise = 0.2
     
     # Generate Training Data   
