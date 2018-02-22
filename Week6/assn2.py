@@ -9,8 +9,8 @@ Created on Mon Feb 12 17:26:56 2018
 import numpy as np
 import matplotlib.pyplot as plt
 
-from models_numpy import RNN
-#from models_pytorch import RNN
+from models_numpy import LSTM
+#from models_pytorch import LSTM
 
 np.random.seed(1234)
     
@@ -28,11 +28,12 @@ if __name__ == "__main__":
     
     # generate the dataset
     def f(t):
-        f = np.sin(np.pi*t)
+#        f = np.sin(np.pi*t)
+        f = np.sin(np.pi*t) + np.sin(0.5*np.pi*t) + + np.sin(0.25*np.pi*t)
         return f
     
     
-    t = np.arange(0,10,0.1)[:,None]
+    t = np.arange(0,100,0.25)[:,None]
     dataset = f(t)
     
     # Use 2/3 of all data as training Data
@@ -42,14 +43,14 @@ if __name__ == "__main__":
     # reshape X and Y
     # X has the form lags x data x dim
     # Y has the form data x dim
-    lags = 5
+    lags = 10
     X, Y = create_dataset(train, lags)
     
     # Model creation
-    hidden_dim = 4
-    model = RNN(X, Y, hidden_dim)
+    hidden_dim = 50
+    model = LSTM(X, Y, hidden_dim)
     
-    model.train(nIter = 10000, batch_size = Y.shape[0])
+    model.train(nIter = 10000, batch_size = 128)
     
     # Prediction
     pred = np.zeros((len(dataset)-lags, Y.shape[-1]))
