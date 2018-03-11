@@ -24,7 +24,7 @@ def f_L(x):
 if __name__ == "__main__":    
     
     N_H = 4
-    N_L = 16
+    N_L = 15
     D = 1
     lb = 0.0*np.ones(D)
     ub = 1.0*np.ones(D)

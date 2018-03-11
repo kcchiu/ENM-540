@@ -241,10 +241,8 @@ class Multifidelity_GP:
         N = y.shape[0]
         
         rho = hyp[-3]
-        logsigma_n_L = hyp[-2]
-        logsigma_n_H = hyp[-1]        
-        sigma_n_L = np.exp(logsigma_n_L)
-        sigma_n_H = np.exp(logsigma_n_H)
+        sigma_n_L = np.exp(hyp[-2])
+        sigma_n_H = np.exp(hyp[-1] )
         
         theta_L = hyp[self.idx_theta_L]
         theta_H = hyp[self.idx_theta_H]
@@ -275,6 +273,7 @@ class Multifidelity_GP:
                           method='L-BFGS-B', callback=self.callback)
         self.hyp = result.x
         
+        
     # Return posterior mean and variance at a set of test points
     def predict_H(self, X_star):
         # Normalize data
@@ -284,6 +283,7 @@ class Multifidelity_GP:
         y_L = self.y_L
         X_H = self.X_H
         y_H = self.y_H
+        
         L = self.L
         
         y = np.vstack((y_L,y_H))
