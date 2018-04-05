@@ -38,9 +38,9 @@ if __name__ == "__main__":
     X = banana(N)
        
     # Model creation
-    layers_Q = np.array([X_dim,20,20,Z_dim])
     layers_P = np.array([Z_dim,20,20,X_dim])       
-    model = VAE(X, layers_Q, layers_P)
+    layers_Q = np.array([X_dim,20,20,Z_dim])
+    model = VAE(X, layers_P, layers_Q)
         
     model.train(nIter = 20000, batch_size = 100)
         
